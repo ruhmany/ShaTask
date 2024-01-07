@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ShaTask.Application.Commands.InvoiceHeaderCommands
 {
-    internal class UpdateINHCommand : IRequest
+    public class UpdateINHCommand : IRequest
     {
         public int ID { get; set; }
         public string CustomerName { get; set; }

@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace ShaTask.Application.Queries.CashierQueries
 {
-    internal class GetCashierByIdQuery : IRequest<Cashier>
+    public class GetCashierByIdQuery : IRequest<Cashier>
     {
+        public int Id { get; set; }
     }
 }

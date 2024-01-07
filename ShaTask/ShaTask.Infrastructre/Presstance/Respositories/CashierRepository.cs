@@ -20,27 +20,27 @@ namespace ShaTask.Infrastructre.Presstance.Respositories
 
         public async Task AddAsync(Cashier entity)
         {
-            await _context.Cashiers.AddAsync(entity);
+            await _context.Cashier.AddAsync(entity);
         }
 
         public void Delete(Cashier entity)
         {
-            _context.Cashiers.Remove(entity);
+            _context.Cashier.Remove(entity);
         }
 
         public async Task<List<Cashier>> GetAllAsync()
         {
-            return await _context.Cashiers.ToListAsync();
+            return await _context.Cashier.Where(c=> !c.IsDeleted).ToListAsync();
         }
 
         public async Task<Cashier> GetByIdAsync(int id)
         {
-            return await _context.Cashiers.FirstOrDefaultAsync(c => c.ID == id);        
+            return await _context.Cashier.FirstOrDefaultAsync(c => c.ID == id);        
         }
 
         public void Update(Cashier entity)
         {
-            _context.Cashiers.Update(entity);
+            _context.Cashier.Update(entity);
         }
     }
 }

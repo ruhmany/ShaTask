@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using ShaTask.Application;
 using ShaTask.Infrastructre;
 using ShaTask.Infrastructre.Presstance;
 
@@ -13,6 +14,7 @@ namespace ShaTask
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.InfraInjection();
+            builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(ApplicationDIInjection).Assembly));
             builder.Services.AddDbContext<ApplicationDbContext>(opt =>
             {
                 opt.UseLazyLoadingProxies().UseSqlServer(builder.Configuration.GetConnectionString("DefualtConnection")
@@ -38,7 +40,7 @@ namespace ShaTask
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Cashier}/{action=Index}/{id?}");
 
             app.Run();
         }

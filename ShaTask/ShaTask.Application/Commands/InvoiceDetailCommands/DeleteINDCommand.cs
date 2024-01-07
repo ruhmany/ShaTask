@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ShaTask.Application.Commands.InvoiceDetailCommands
 {
-    internal class DeleteINDCommand : IRequest
+    public class DeleteINDCommand : IRequest
     {
         public int ID { get; set; }
     }

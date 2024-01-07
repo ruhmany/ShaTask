@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ShaTask.Domain.Entities
 {
-    public class City : BaseEntity
-    {        
-        public string CityName { get; set; }
-        public virtual List<Branch> Branches { get; set; }
+    public class BaseEntity
+    {
+        public int ID { get; set; }
+        public bool IsDeleted { get; set; } = false;
     }
 }

@@ -30,7 +30,7 @@ namespace ShaTask.Infrastructre.Presstance.Respositories
 
         public async Task<List<InvoiceDetail>> GetAllAsync()
         {
-            return await _context.InvoiceDetails.ToListAsync();
+            return await _context.InvoiceDetails.Where(c => !c.IsDeleted).ToListAsync();
         }
 
         public async Task<InvoiceDetail> GetByIdAsync(int id)

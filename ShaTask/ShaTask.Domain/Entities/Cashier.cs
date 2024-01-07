@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace ShaTask.Domain.Entities
 {
-    public class Cashier
-    {
-        public int ID { get; set; }
+    public class Cashier : BaseEntity
+    {        
         public string CashierName { get; set; }
         public int BranchID { get; set; }
-        public Branch Branch { get; set; }
+        public virtual Branch Branch { get; set; }
     }
 }

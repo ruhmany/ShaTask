@@ -1,0 +1,29 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model AddCashierViewModel
+
+<h2>إضافة بائع</h2>
+
+<form asp-action="AddCashier" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="form-group">
+        <label class="control-label">أسم البائع</label>
+        <input asp-for="CashierName" class="form-control" />
+        <span asp-validation-for="CashierName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">رقم الفرع</label>
+        <input asp-for="BranchID" class="form-control" />
+        <span asp-validation-for="BranchID" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Add Cashier" class="btn btn-primary" />
+    </div>
+</form>

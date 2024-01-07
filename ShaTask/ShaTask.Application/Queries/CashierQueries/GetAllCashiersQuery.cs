@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ShaTask.Application.Queries.CashierQueries
 {
-    internal class GetAllCashiersQuery : IRequest<IEnumerable<Cashier>>
+    public class GetAllCashiersQuery : IRequest<IEnumerable<Cashier>>
     {
     }
 }
