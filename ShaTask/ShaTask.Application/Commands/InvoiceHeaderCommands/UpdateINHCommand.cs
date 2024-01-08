@@ -9,10 +9,10 @@ namespace ShaTask.Application.Commands.InvoiceHeaderCommands
 {
     public class UpdateINHCommand : IRequest
     {
-        public int ID { get; set; }
+        public long ID { get; set; }
         public string CustomerName { get; set; }
         public DateTime Invoicedate { get; set; }
-        public int? CashierID { get; set; }
-        public int BranchID { get; set; }
+        public int? CashierID { get; set; } = 0;
+        public int BranchID { get; set; } = 0;
     }
 }

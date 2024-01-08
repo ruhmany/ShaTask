@@ -9,10 +9,9 @@ namespace ShaTask.Application.Commands.InvoiceDetailCommands
 {
     public class UpdateINDCommand : IRequest
     {
-        public int ID { get; set; }
-        public long InvoiceHeaderID { get; set; }
+        public long ID { get; set; }
         public string ItemName { get; set; }
-        public float ItemCount { get; set; }
-        public float ItemPrice { get; set; }
+        public double ItemCount { get; set; }
+        public double ItemPrice { get; set; }
     }
 }

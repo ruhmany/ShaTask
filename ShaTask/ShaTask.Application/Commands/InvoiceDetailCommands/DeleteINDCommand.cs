@@ -9,6 +9,6 @@ namespace ShaTask.Application.Commands.InvoiceDetailCommands
 {
     public class DeleteINDCommand : IRequest
     {
-        public int ID { get; set; }
+        public long ID { get; set; }
     }
 }

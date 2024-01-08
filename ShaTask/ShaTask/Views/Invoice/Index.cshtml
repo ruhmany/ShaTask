@@ -1,0 +1,182 @@
+﻿@using ShaTask.Application.DTOs;
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!-- Index.cshtml -->
+@model List<InvoiceHeader>
+
+<h1>القسائم</h1>
+
+<table class="table">
+    <thead>
+            <th>اسم العميل</th>
+            <th>اسم البائع</th>
+            <th>اسم الفرع</th>
+            <th>إجمالي المدفوعات</th>
+            <th>إجراء</th>
+    </thead>
+    <tbody>
+        @foreach (var invoice in Model)
+        {
+            <tr id="details_@invoice.ID">
+                <td><input type="text" id="CustomerName_@invoice.ID" value="@invoice.CustomerName" disabled/></td>
+                <td><input type="text" id="CashierName_@invoice.ID" value="@invoice.Cashier.CashierName" disabled/></td>
+                <td><input type="text" id="BranchName_@invoice.ID" value="@invoice.Branch.BranchName" disabled/></td>
+                <td>@invoice.InvoiceDetails.Sum(d => d.ItemCount * d.ItemPrice)</td>
+                <td>
+                    <button class="btn btn-success" onclick="toggleDetails('@invoice.ID')">تفاصيل</button> |
+                    <button class="btn btn-warning" id="editbutton_@invoice.ID" onclick="toggleDetailsEditForm('@invoice.ID')">تعديل</button>
+                    <button class="btn btn-warning" id="savebutton_@invoice.ID" style="display:none" onclick="saveDetailsEditForm('@invoice.ID')">حفظ التغيرات</button>
+                </td>
+            </tr>
+            <tr id="detailsRow_@invoice.ID" style="display:none;">
+                <td colspan="5">
+                    <!-- Include the partial view here -->
+                    @await Html.PartialAsync("_InvoiceDetailsPartial", invoice.InvoiceDetails)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts 
+    {
+    <script>
+        function toggleDetails(invoiceId) 
+        {
+            var detailsRow = document.getElementById('detailsRow_' + invoiceId);
+            detailsRow.style.display = detailsRow.style.display === 'none' ? '' : 'none';
+        }
+
+        function toggleDetailsEditForm(invoiceId) {
+            var editItemNameInput = document.getElementById('CustomerName_' + invoiceId);
+            var editItemCountInput = document.getElementById('CashierName_' + invoiceId);
+            var editItemPriceInput = document.getElementById('BranchName_' + invoiceId);
+            var editButton = document.getElementById('editbutton_'+invoiceId)
+            var saveButton = document.getElementById('savebutton_' + invoiceId)
+            if (editItemNameInput.disabled) {
+                // Enable the inputs
+                editItemNameInput.disabled = false;
+                editItemCountInput.disabled = false;
+                editItemPriceInput.disabled = false;
+                editButton.style.display = 'none';
+                saveButton.style.display = '';
+            } else {
+                // Disable the inputs
+                editItemNameInput.disabled = true;
+                editItemCountInput.disabled = true;
+                editItemPriceInput.disabled = true;
+                editButton.style.display = '';
+                saveButton.style.display = 'none';
+            }
+        }
+
+        
+
+        function saveDetailsEditForm(invoiceId) {
+            var CustomerName = document.getElementById('CustomerName_' + invoiceId).value;
+            var CashierName = document.getElementById('CashierName_' + invoiceId).value;
+            var BranchName = document.getElementById('BranchName_' + invoiceId).value;
+
+            // Send an AJAX request to update the values in the controller
+            $.ajax({
+                url: '/Invoice/UpdateInvoice',
+                method: 'POST',
+                data: {
+                    invoiceId: invoiceId,
+                    CustomerName: CustomerName,
+                    CashierName: CashierName,
+                    BranchName: BranchName
+                },
+                success: function (data) {
+                    // Handle success, if needed
+                    console.log(data);
+                },
+                error: function (error) {
+                    // Handle error, if needed
+                    console.error(error);
+                }
+            });
+
+            // Toggle back to the "تعديل" state
+            toggleDetailsEditForm(invoiceId);
+        }
+
+
+
+
+
+
+        function toggleDetailEditForm(invoiceId) {
+            var editdItemNameInput = document.getElementById('itemName_' + invoiceId);
+            var editcItemCountInput = document.getElementById('itemCount_' + invoiceId);
+            var editcItemPriceInput = document.getElementById('itemPrice_' + invoiceId);
+            var editdButton = document.getElementById('editdbutton_' + invoiceId)
+            var savedButton = document.getElementById('savedbutton_' + invoiceId)
+            if (editdItemNameInput.disabled) {
+                // Enable the inputs
+                editdItemNameInput.disabled = false;
+                editcItemCountInput.disabled = false;
+                editcItemPriceInput.disabled = false;
+                editdButton.style.display = 'none';
+                savedButton.style.display = '';
+            } else {
+                // Disable the inputs
+                editdItemNameInput.disabled = true;
+                editcItemCountInput.disabled = true;
+                editcItemPriceInput.disabled = true;
+                editdButton.style.display = '';
+                savedButton.style.display = 'none';
+            }
+        }
+
+        
+        
+        function updateItem(itemid) {
+
+            var itemName = document.getElementById('itemName_'+itemid).value;
+            var itemPrice = document.getElementById('itemPrice_'+itemid).value;
+            var itemCount = document.getElementById('itemCount_' + itemid).value;
+            $.ajax({
+                url: '/Invoice/UpdateItem',
+                method: 'POST',
+                data: {
+                    ItemID: itemid,
+                    ItemName: itemName,
+                    ItemPrice: itemPrice,
+                    ItemCount: itemCount
+                },
+                success: function (data) {
+                    // Handle success, if needed
+                    console.log(data);
+                },
+                error: function (error) {
+                    // Handle error, if needed
+                    console.error(error);
+                }
+            });
+            toggleDetailEditForm();
+        }
+
+        function deleteItem(itemid)
+        {
+            $.ajax({
+                url: '/Invoice/DeleteItem',
+                method: 'Post',
+                data: {
+                    ID: itemid
+                },
+                success: function (data) {
+                    // Handle success, if needed
+                    console.log(data);
+                },
+                error: function (error) {
+                    // Handle error, if needed
+                    console.error(error);
+                }
+            })
+        }
+    </script>
+}

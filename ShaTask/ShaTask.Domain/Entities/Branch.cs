@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 namespace ShaTask.Domain.Entities
 {
     public class Branch : BaseEntity
-    {        
+    {
+        public int ID { get; set; }
         public string BranchName { get; set; }
         public int CityID { get; set; }
         public virtual City City { get; set; }

@@ -25,7 +25,6 @@ namespace ShaTask.Application.CommandsHandlers.InvoiceDetailHandlers
             var ind = await _invoiceDetail.GetByIdAsync(request.ID);
             if (ind != null) 
             {
-                ind.InvoiceHeaderID = request.InvoiceHeaderID;
                 ind.ItemPrice = request.ItemPrice;
                 ind.ItemName = request.ItemName;
                 ind.ItemCount = request.ItemCount;

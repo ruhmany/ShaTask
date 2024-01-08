@@ -9,7 +9,7 @@ namespace ShaTask.Domain.Interfaces.IRepositories
 {
     public interface IInvoiceDetail
     {
-        Task<InvoiceDetail> GetByIdAsync(int id);
+        Task<InvoiceDetail> GetByIdAsync(long id);
         Task<List<InvoiceDetail>> GetAllAsync();
         Task AddAsync(InvoiceDetail entity);
         void Update(InvoiceDetail entity);

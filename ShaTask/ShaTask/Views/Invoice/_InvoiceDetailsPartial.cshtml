@@ -1,0 +1,35 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model IEnumerable<InvoiceDetail>
+
+<div class="details-section">
+    <h4>Iتفاصيل القسيمة</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>اسم المنتج</th>
+                <th>سعر الوحدة</th>
+                <th>الكمية</th>
+                <th>إجراء</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var detail in Model)
+            {
+                <tr>
+                    <td><input type="text" id="itemName_@detail.ID" value="@detail.ItemName" disabled /></td>
+                    <td><input type="text" id="itemPrice_@detail.ID" value="@detail.ItemPrice" disabled /></td>
+                    <td><input type="text" id="itemCount_@detail.ID" value="@detail.ItemCount" disabled /></td>
+                    <td>
+                        <button class="btn btn-danger" onclick="deleteItem('@detail.ID')">حذف</button> |
+                        <button class="btn btn-warning" id="editdbutton_@detail.ID" onclick="toggleDetailEditForm('@detail.ID')">تعديل</button>
+                        <button class="btn btn-success" id="savedbutton_@detail.ID" style="display:none" onclick="updateItem('@detail.ID')">حفظ التغيرات</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

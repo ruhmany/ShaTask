@@ -8,7 +8,6 @@ namespace ShaTask.Domain.Entities
 {
     public class BaseEntity
     {
-        public int ID { get; set; }
         public bool IsDeleted { get; set; } = false;
     }
 }

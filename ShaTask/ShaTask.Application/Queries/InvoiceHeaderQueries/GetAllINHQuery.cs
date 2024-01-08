@@ -3,7 +3,7 @@ using ShaTask.Domain.Entities;
 
 namespace ShaTask.Application.Queries.InvoiceHeaderQueries
 {
-    internal class GetAllINHQuery : IRequest<IEnumerable<InvoiceHeader>>
+    public class GetAllINHQuery : IRequest<IEnumerable<InvoiceHeader>>
     {
     }
 }

@@ -33,7 +33,7 @@ namespace ShaTask.Infrastructre.Presstance.Respositories
             return await _context.InvoiceDetails.Where(c => !c.IsDeleted).ToListAsync();
         }
 
-        public async Task<InvoiceDetail> GetByIdAsync(int id)
+        public async Task<InvoiceDetail> GetByIdAsync(long id)
         {
             return await _context.InvoiceDetails.FirstOrDefaultAsync(ind => ind.ID == id);
         }

@@ -20,27 +20,27 @@ namespace ShaTask.Infrastructre.Presstance.Respositories
 
         public async Task AddAsync(InvoiceHeader entity)
         {
-            await _context.InvoiceHeaders.AddAsync(entity);
+            await _context.InvoiceHeader.AddAsync(entity);
         }
 
         public void Delete(InvoiceHeader entity)
         {
-            _context.InvoiceHeaders.Remove(entity);
+            _context.InvoiceHeader.Remove(entity);
         }
 
         public async Task<List<InvoiceHeader>> GetAllAsync()
         {
-            return await _context.InvoiceHeaders.Where(c => !c.IsDeleted).ToListAsync();
+            return await _context.InvoiceHeader.Where(c => !c.IsDeleted).ToListAsync();
         }
 
-        public async Task<InvoiceHeader> GetByIdAsync(int id)
+        public async Task<InvoiceHeader> GetByIdAsync(long id)
         {
-            return await _context.InvoiceHeaders.FirstOrDefaultAsync(inh => inh.ID == id);
+            return await _context.InvoiceHeader.FirstOrDefaultAsync(inh => inh.ID == id);
         }
 
         public void Update(InvoiceHeader entity)
         {
-            _context.InvoiceHeaders.Update(entity);
+            _context.InvoiceHeader.Update(entity);
         }
     }
 }

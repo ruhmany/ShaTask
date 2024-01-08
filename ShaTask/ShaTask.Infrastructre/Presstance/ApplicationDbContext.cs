@@ -20,7 +20,7 @@ namespace ShaTask.Infrastructre.Presstance
         public DbSet<Cashier> Cashier { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<InvoiceDetail> InvoiceDetails { get; set; }
-        public DbSet<InvoiceHeader> InvoiceHeaders { get; set; }
+        public DbSet<InvoiceHeader> InvoiceHeader { get; set; }
 
         public override int SaveChanges()
         {

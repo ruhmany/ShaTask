@@ -29,8 +29,8 @@ namespace ShaTask.Application.CommandsHandlers.InvoiceHeaderHandlers
             {
                 ind.CustomerName = request.CustomerName;
                 ind.Invoicedate = request.Invoicedate;
-                ind.CashierID = request.CashierID;
-                ind.BranchID = request.BranchID;
+                ind.CashierID = request.CashierID == 0 ? ind.CashierID: request.CashierID;
+                ind.BranchID = request.BranchID == 0? ind.BranchID : request.BranchID;
                 _invoiceHeader.Update(ind);
                 _uow.CommitChanges();
             }
