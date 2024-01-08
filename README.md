@@ -1,5 +1,12 @@
 # Clean Architecture Project - Invoice Management
-
+![ListAllUsers](ShaTask/ShaTask/wwwroot/img/Listingallcashiers.png)
+![AddNewCashier](ShaTask/ShaTask/wwwroot/img/AddNewCashier.png)
+![UpdateACashier](ShaTask/ShaTask/wwwroot/img/UpdateACashier.png)
+![DeleteACashier](ShaTask/ShaTask/wwwroot/img/DeleteACashier.png)
+![ListAllInvoices](ShaTask/ShaTask/wwwroot/img/ListAllInvoices.png)
+![ListingAllInvoiceItems](ShaTask/ShaTask/wwwroot/img/ListingAllInvoiceItems.png)
+![UpdateInvoiceData](ShaTask/ShaTask/wwwroot/img/UpdateInvoiceData.png)
+![UpdateinvoiceHeader](ShaTask/ShaTask/wwwroot/img/UpdateInvoiceHeader.png)
 
 This repository contains a project implementing a 4-layer Clean Architecture with the following technologies: MediatR, CQRS, Repository Pattern, Entity Framework Core, LINQ, and ASP.NET Core MVC. The main purpose of this project is to create a view for managing invoice data, including basic invoice details and items, with CRUD operations.
 
